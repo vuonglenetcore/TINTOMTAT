@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TINTOMTAT.Data;
 using TINTOMTAT.Models.BaiVietPortalViewModel;
+using TINTOMTAT.Models.DanhMucBaiViet;
 
 namespace TINTOMTAT.Controllers
 {
@@ -23,6 +24,18 @@ namespace TINTOMTAT.Controllers
             NgayTao = p.NgayTao,
             HinhAnh = p.HinhAnh
             }).ToList();
+
+            var postHot = _connect.BaiViets.Where(x=>x.DaXoa != true).Take(4).Select(p => new BaiVietViewModel
+            {
+                Id = p.Id,
+                TenBaiViet = p.TenBaiViet,
+                Alias = p.Alias,
+                LuotXem = p.LuotXem,
+                HinhAnh = p.HinhAnh
+            }).ToList();
+
+            ViewBag.PostHot = postHot;
+
             return View(result);
         }
 
@@ -42,8 +55,13 @@ namespace TINTOMTAT.Controllers
 
         public ActionResult MenuPartial()
         {
-            ViewBag.cc = "con cac ";
-            return PartialView();
+            var danhMucs = _connect.DanhMucBaiViets.Where(x=>x.DaXoa != true)
+                .Select(s=> new DanhMucBaiVietViewModel { 
+                Id = s.Id,
+                TenDanhMuc = s.TenDanhMuc,
+                Alias = s.Alias
+            }).ToList().OrderBy(x => x.ThuTuHienThi);
+            return PartialView(danhMucs);
         }
     }
 }

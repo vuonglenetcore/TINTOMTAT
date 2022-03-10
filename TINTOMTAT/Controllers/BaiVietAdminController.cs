@@ -61,7 +61,7 @@ namespace TINTOMTAT.Controllers
                 Alias = LoaiDau(model.TenBaiViet),
                 ThuTuHienThiTrangChu = model.ThuTuHienThiTrangChu,
                 ThuTuHienThi = model.ThuTuHienThi,
-                LuotXem = 200,
+                LuotXem = 2000 + model.LuotXem,
                 NoiDungNgan = model.NoiDungNgan,
                 NoiDung = model.NoiDung,
                 DanhMucId = model.DanhMucId,
@@ -115,7 +115,7 @@ namespace TINTOMTAT.Controllers
             return View(baiViet);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult SuaBaiViet(BaiVietViewModel model)
         {
             if (!ModelState.IsValid)

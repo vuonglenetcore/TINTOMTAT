@@ -9,7 +9,11 @@ namespace TINTOMTAT.Models.BaiVietPortalViewModel
     {
         public long Id { get; set; }
         public string TenBaiViet { get; set; }
+        public string Alias { get; set; }
         public string HinhAnh { get; set; }
         public string NoiDung { get; set; }
+        public int? LuotXem { get; set; }
+        public DateTime NgayTao { get; set; }
+        public string NgayTaoDisplay => NgayTao.ToString("dd/MM/yyyy");
     }
 }

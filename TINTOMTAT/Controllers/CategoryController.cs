@@ -8,23 +8,22 @@ using TINTOMTAT.Models.BaiVietPortalViewModel;
 
 namespace TINTOMTAT.Controllers
 {
-    public class PostController : Controller
+    public class CategoryController : Controller
     {
         TinTomTatDbContext _connect = new TinTomTatDbContext();
-
+        // GET: Category
         public ActionResult Index(string alias)
         {
-            var baiViet = _connect.BaiViets.Where(x => x.Alias.Contains(alias)).Select(p => new BaiVietDetailViewModel
+            var result = _connect.BaiViets.Where(x => x.DanhMucBaiViet.Alias == alias && x.DaXoa != true).Select(p => new BaiVietViewModel
             {
                 Id = p.Id,
                 TenBaiViet = p.TenBaiViet,
                 Alias = p.Alias,
-                NoiDung = p.NoiDung,
-                HinhAnh = p.HinhAnh,
                 LuotXem = p.LuotXem,
-                NgayTao = p.NgayTao
-                
-            }).FirstOrDefault();
+                NoiDungNgan = p.NoiDungNgan,
+                NgayTao = p.NgayTao,
+                HinhAnh = p.HinhAnh
+            }).ToList();
 
             var postHot = _connect.BaiViets.Where(x => x.DaXoa != true).Take(4).Select(p => new BaiVietViewModel
             {
@@ -35,9 +34,10 @@ namespace TINTOMTAT.Controllers
                 HinhAnh = p.HinhAnh
             }).ToList();
 
+            ViewBag.Title = alias;
             ViewBag.PostHot = postHot;
 
-            return View(baiViet);
+            return View(result);
         }
     }
 }

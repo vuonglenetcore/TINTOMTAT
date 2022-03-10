@@ -15,20 +15,37 @@ namespace TINTOMTAT
 
             routes.MapRoute(
                 name: "PostDetail",
-                url: "{alias}.pc",
-                defaults: new { controller = "Post", action = "Index", id = UrlParameter.Optional }
+                url: "{alias}.html",
+                defaults: new { controller = "Post", action = "Index", alias = UrlParameter.Optional },
+                namespaces: new string[] { "TINTOMTATs.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Category",
+                url: "{Category}/{alias}.html",
+                defaults: new { controller = "Category", action = "Index", alias = UrlParameter.Optional },
+                namespaces: new string[] { "TINTOMTATs.Web.Controllers" }
             );
 
             routes.MapRoute(
                name: "admin",
                url: "admin/{id}",
-               defaults: new { controller = "HomeAdmin", action = "Index", id = UrlParameter.Optional }
+               defaults: new { controller = "HomeAdmin", action = "Index", id = UrlParameter.Optional },
+               namespaces: new string[] { "TINTOMTATs.Web.Controllers" }
             );
+
+            routes.MapRoute(
+                name: "Trang chủ",
+                url: "",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "TINTOMTATs.Web.Controllers" }
+           );
 
             routes.MapRoute(
              name: "Default",
              url: "{controller}/{action}/{id}",
-             defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+             defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+             namespaces: new string[] { "TINTOMTATs.Web.Controllers" }
             );
         }
     }

@@ -9,6 +9,7 @@ namespace TINTOMTAT.Models.DanhMucBaiViet
     {
         public long Id { get; set; }
         public string TenDanhMuc { get; set; }
+        public string Alias { get; set; }
         public int? ThuTuHienThi { get; set; }
     }
 }

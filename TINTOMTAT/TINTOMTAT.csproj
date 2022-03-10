@@ -125,6 +125,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaiVietAdminController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DanhMucBaiVietAdminController.cs" />
     <Compile Include="Controllers\HomeAdminController.cs" />
     <Compile Include="Data\Entites\BaiViet.cs" />
@@ -2107,6 +2108,7 @@
     <Content Include="Views\Auth\ChuaDangNhap.cshtml" />
     <Content Include="Views\HomeAdmin\Index.cshtml" />
     <Content Include="Views\Home\MenuPartial.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\imgBaiViet\" />
