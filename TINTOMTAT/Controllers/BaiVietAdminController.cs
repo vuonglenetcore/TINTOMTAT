@@ -48,6 +48,7 @@ namespace TINTOMTAT.Controllers
         {
             var danhMuc = _connect.DanhMucBaiViets.Where(x=>x.DaXoa != true).ToList();
             ViewBag.DanhMuc = danhMuc;
+            ViewBagBaiViet();
 
             return View();
         }
@@ -61,7 +62,7 @@ namespace TINTOMTAT.Controllers
                 Alias = LoaiDau(model.TenBaiViet),
                 ThuTuHienThiTrangChu = model.ThuTuHienThiTrangChu,
                 ThuTuHienThi = model.ThuTuHienThi,
-                LuotXem = 2000 + model.LuotXem,
+                LuotXem =  2000 + (model.LuotXem?? 0),
                 NoiDungNgan = model.NoiDungNgan,
                 NoiDung = model.NoiDung,
                 DanhMucId = model.DanhMucId,
@@ -109,6 +110,8 @@ namespace TINTOMTAT.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBagBaiViet();
 
             var danhMuc = _connect.DanhMucBaiViets.Where(x => x.DaXoa != true).ToList();
             ViewBag.DanhMuc = danhMuc;
@@ -189,6 +192,13 @@ namespace TINTOMTAT.Controllers
             return regex.Replace(temp, String.Empty)
                         .Replace('đ', 'd').Replace('Đ', 'D').Replace(' ', '-');
         }
-       
+
+        public void ViewBagBaiViet()
+        {
+            var thuTuTrangChu = _connect.BaiViets.Where(x => x.ThuTuHienThiTrangChu.HasValue && x.DaXoa != true)
+                .Select(x => x.ThuTuHienThiTrangChu).OrderBy(x=>x.Value).ToList();
+
+            ViewBag.ThuTuTrangChu = thuTuTrangChu;
+        }
     }
 }

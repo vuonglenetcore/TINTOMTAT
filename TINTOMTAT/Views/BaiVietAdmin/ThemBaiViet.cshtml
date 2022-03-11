@@ -65,13 +65,13 @@
             </div>
         </div>*@
 
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(model => model.LuotXem, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.LuotXem, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.LuotXem, "", new { @class = "text-danger" })
         </div>
-    </div>
+    </div>*@
 
     @*<div class="form-group">
             @Html.LabelFor(model => model.NgayUpdate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -81,13 +81,17 @@
             </div>
         </div>*@
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ThuTuHienThiTrangChu, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ThuTuHienThiTrangChu, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ThuTuHienThiTrangChu, "", new { @class = "text-danger" })
-        </div>
+<div class="form-group">
+    @Html.LabelFor(model => model.ThuTuHienThiTrangChu, htmlAttributes: new { @class = "control-label col-md-3" })
+    @foreach (var item in ViewBag.ThuTuTrangChu)
+    {
+        <b>. @item</b>
+    }
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.ThuTuHienThiTrangChu, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ThuTuHienThiTrangChu, "", new { @class = "text-danger" })
     </div>
+</div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.ThuTuHienThi, htmlAttributes: new { @class = "control-label col-md-2" })

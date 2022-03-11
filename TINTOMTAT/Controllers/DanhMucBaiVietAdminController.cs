@@ -28,6 +28,8 @@ namespace TINTOMTAT.Controllers
         [HttpGet]
         public ActionResult ThemDanhMuc()
         {
+            ViewBagDanhMucBaiViet();
+
             return View();
         }
 
@@ -64,6 +66,7 @@ namespace TINTOMTAT.Controllers
                 return HttpNotFound();
             }
 
+            ViewBagDanhMucBaiViet();
 
             return View(danhMuc);
         }
@@ -118,6 +121,16 @@ namespace TINTOMTAT.Controllers
             string temp = str.Normalize(NormalizationForm.FormD);
             return regex.Replace(temp, String.Empty)
                         .Replace('đ', 'd').Replace('Đ', 'D').Replace(' ', '-');
+        }
+
+
+
+        public void ViewBagDanhMucBaiViet()
+        {
+            var thuTuHienThi = _connect.DanhMucBaiViets.Where(x => x.ThuTuHienThi.HasValue && x.DaXoa != true)
+                .Select(x => x.ThuTuHienThi).OrderBy(x => x.Value).ToList();
+
+            ViewBag.ThuTuHienThi = thuTuHienThi;
         }
     }
 }
