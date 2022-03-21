@@ -121,7 +121,7 @@ h1, h2, h3, h4, h5, h6 {
 	Header Styles 
 --------------------------------------------------------*/
 .top-header {
-    background: #e3722e;
+    background: #2e8fe3;
     color: white;
     padding: 10px 0;
 }
@@ -274,7 +274,7 @@ h1, h2, h3, h4, h5, h6 {
         display: block;
         width: 70px;
         height: 4px;
-        background: #e3722e;
+        background: #1e2560;
         margin: 0 auto;
     }
 
@@ -351,7 +351,7 @@ h1, h2, h3, h4, h5, h6 {
         #portfolio .portfolio-thumb .overlay {
             opacity: 0;
             visibility: visible;
-            background: rgba(227, 114, 46, 0.9);
+            background: rgb(201 232 238 / 90%);
             position: absolute;
             top: 0;
             left: 0;
@@ -609,7 +609,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------*/
 .site-footer {
     margin-top: 100px;
-    background-color: #e3722e;
+    background-color: #2e8fe3;
     color: white;
     padding: 25px 0;
 }
@@ -713,6 +713,6 @@ IPHONE 4-4S-5 PORTRAIT (320x568)
 .inner-content h1 {
     font-size: 22px;
     font-weight: 700;
-    color: #e3722e;
+    color: #1e2560;
     margin-bottom: 10px;
 }
