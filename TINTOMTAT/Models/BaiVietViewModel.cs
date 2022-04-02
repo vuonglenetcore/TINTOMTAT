@@ -24,6 +24,8 @@ namespace TINTOMTAT.Models
         public string HinhAnh { get; set; }
         public HttpPostedFileBase HinhAnhFile { get; set; }
         public DateTime NgayTao { get; set; }
+        [DisplayName("Lượt xem ảo")]
+        public int? LuotXemAo { get; set; }
         public int? LuotXem { get; set; }
         public DateTime? NgayUpdate { get; set; }
 

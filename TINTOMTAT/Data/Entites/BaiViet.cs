@@ -16,6 +16,7 @@ namespace TINTOMTAT.Data.Entites
         public string NoiDung { get; set; }
         public string HinhAnh { get; set; }
         public DateTime NgayTao { get; set; }
+        public int? LuotXemAo { get; set; }
         public int? LuotXem { get; set; }
         public DateTime? NgayUpdate { get; set; }
         public int? ThuTuHienThiTrangChu { get; set; }

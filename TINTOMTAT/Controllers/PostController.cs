@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,17 +15,18 @@ namespace TINTOMTAT.Controllers
 
         public ActionResult Index(string alias)
         {
-            var baiViet = _connect.BaiViets.Where(x => x.Alias.Contains(alias)).Select(p => new BaiVietDetailViewModel
+            var baiViet = _connect.BaiViets.FirstOrDefault(x => x.Alias.Contains(alias));
+            var baiVietViewModel = new BaiVietDetailViewModel
             {
-                Id = p.Id,
-                TenBaiViet = p.TenBaiViet,
-                Alias = p.Alias,
-                NoiDung = p.NoiDung,
-                HinhAnh = p.HinhAnh,
-                LuotXem = p.LuotXem,
-                NgayTao = p.NgayTao
-                
-            }).FirstOrDefault();
+                Id = baiViet.Id,
+                TenBaiViet = baiViet.TenBaiViet,
+                Alias = baiViet.Alias,
+                NoiDung = baiViet.NoiDung,
+                HinhAnh = baiViet.HinhAnh,
+                LuotXem = baiViet.LuotXem,
+                NgayTao = baiViet.NgayTao
+
+            };
 
             var postHot = _connect.BaiViets.Where(x => x.DaXoa != true).Take(4).Select(p => new BaiVietViewModel
             {
@@ -36,8 +38,13 @@ namespace TINTOMTAT.Controllers
             }).ToList();
 
             ViewBag.PostHot = postHot;
+            //update lượt xem
 
-            return View(baiViet);
+            baiViet.LuotXem += 1;
+            _connect.Entry(baiViet).State = EntityState.Modified;
+            _connect.SaveChanges();
+
+            return View(baiVietViewModel);
         }
     }
 }

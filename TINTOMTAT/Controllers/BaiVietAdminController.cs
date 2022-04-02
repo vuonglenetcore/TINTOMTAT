@@ -30,7 +30,7 @@ namespace TINTOMTAT.Controllers
                 HinhAnh = p.HinhAnh,
                 ThuTuHienThi = p.ThuTuHienThi,
                 ThuTuHienThiTrangChu = p.ThuTuHienThiTrangChu,
-                LuotXem = p.LuotXem,
+                LuotXem = (p.LuotXem == null ? 0 : p.LuotXem) + (p.LuotXemAo == null ? 0 : p.LuotXemAo),
                 NgayTao = p.NgayTao,
                 NoiDungNgan = p.NoiDungNgan,
                 NoiDung = p.NoiDung,
@@ -53,7 +53,7 @@ namespace TINTOMTAT.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult ThemBaiViet(BaiVietViewModel model)
         {
             var baiViet = new BaiViet()
@@ -62,7 +62,7 @@ namespace TINTOMTAT.Controllers
                 Alias = LoaiDau(model.TenBaiViet),
                 ThuTuHienThiTrangChu = model.ThuTuHienThiTrangChu,
                 ThuTuHienThi = model.ThuTuHienThi,
-                LuotXem =  2000 + (model.LuotXem?? 0),
+                LuotXemAo =  model.LuotXemAo,
                 NoiDungNgan = model.NoiDungNgan,
                 NoiDung = model.NoiDung,
                 DanhMucId = model.DanhMucId,
@@ -100,7 +100,8 @@ namespace TINTOMTAT.Controllers
                 TenBaiViet = p.TenBaiViet,
                 ThuTuHienThiTrangChu = p.ThuTuHienThiTrangChu,
                 ThuTuHienThi = p.ThuTuHienThi,
-                LuotXem = p.LuotXem,
+                LuotXem = p.LuotXem == null ? 0 : p.LuotXem,
+                LuotXemAo = p.LuotXemAo == null ? 0 : p.LuotXemAo,
                 NoiDungNgan = p.NoiDungNgan,
                 NoiDung = p.NoiDung,
                 DanhMucId = p.DanhMucId,
@@ -137,7 +138,7 @@ namespace TINTOMTAT.Controllers
             baiViet.ThuTuHienThi = model.ThuTuHienThi;
             baiViet.NoiDungNgan = model.NoiDungNgan;
             baiViet.NoiDung = model.NoiDung;
-            baiViet.LuotXem = model.LuotXem;
+            baiViet.LuotXemAo = model.LuotXemAo == null ? 0 : model.LuotXemAo;
             baiViet.NgayUpdate = DateTime.Now;
             baiViet.DanhMucId = model.DanhMucId;
 
